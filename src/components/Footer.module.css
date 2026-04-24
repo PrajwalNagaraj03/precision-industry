@@ -1,0 +1,98 @@
+.footer {
+  background-color: #05080E; /* Darker than main bg */
+  border-top: 1px solid var(--color-border);
+  padding: var(--spacing-xl) 0 0;
+  color: var(--color-text-secondary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+
+.col h4 {
+  font-family: var(--font-heading);
+  color: var(--color-text-primary);
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-sm);
+  position: relative;
+  display: inline-block;
+}
+
+.col h4::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background-color: var(--color-accent-primary);
+}
+
+.desc {
+  margin-bottom: var(--spacing-sm);
+  font-size: 0.95rem;
+}
+
+.links {
+  list-style: none;
+}
+
+.links li {
+  margin-bottom: 0.5rem;
+}
+
+.links a {
+  color: var(--color-text-secondary);
+  transition: color var(--transition-fast);
+}
+
+.links a:hover {
+  color: var(--color-accent-primary);
+}
+
+.contactInfo {
+  list-style: none;
+}
+
+.contactInfo li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.icon {
+  color: var(--color-accent-primary);
+  margin-top: 4px;
+  flex-shrink: 0;
+}
+
+.bottomBar {
+  background-color: rgba(0,0,0,0.5);
+  padding: var(--spacing-sm) 0;
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.85rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--spacing-sm);
+}
+
+.logoText {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--color-text-primary);
+  letter-spacing: 1px;
+}
+
+.logoAccent {
+  color: var(--color-accent-primary);
+}
