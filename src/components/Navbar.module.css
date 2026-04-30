@@ -31,6 +31,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  z-index: 110;
 }
 
 .logoText {
@@ -58,7 +59,7 @@
   font-size: 1.05rem;
   color: var(--color-text-secondary);
   position: relative;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bouncy transition */
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .link:hover {
@@ -90,17 +91,85 @@
   text-shadow: 0 0 5px rgba(255,255,255,0.5);
 }
 
-@media (max-width: 768px) {
+/* Mobile Controls */
+.mobileControls {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  z-index: 110;
+}
+
+.hamburger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 2px solid var(--color-accent-primary);
+  color: var(--color-accent-primary);
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hamburger:hover {
+  background: rgba(0, 240, 255, 0.1);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  background: rgba(6, 9, 19, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+  z-index: 99;
+}
+
+.mobileLink {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 1rem 0;
+  color: var(--color-text-secondary);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  transition: color 0.3s, padding-left 0.3s;
+}
+
+.mobileLink:hover {
+  color: var(--color-accent-primary);
+  padding-left: 1rem;
+  text-shadow: none;
+}
+
+.mobileLinkActive {
+  color: var(--color-accent-primary);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
   .navLinks {
     display: none;
+  }
+  .mobileControls {
+    display: flex;
   }
 }
 
 /* Light mode overrides */
 :global([data-theme="light"]) .navbarScrolled {
-  background: rgba(244, 246, 251, 0.9);
-  border-bottom: 1px solid rgba(108, 43, 217, 0.2);
-  box-shadow: 0 4px 30px rgba(108, 43, 217, 0.1);
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 :global([data-theme="light"]) .logoAccent {
@@ -119,3 +188,16 @@
   text-shadow: none;
 }
 
+:global([data-theme="light"]) .mobileMenu {
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+:global([data-theme="light"]) .mobileLink {
+  border-bottom-color: rgba(0,0,0,0.06);
+}
+
+:global([data-theme="light"]) .mobileLink:hover {
+  text-shadow: none;
+}
