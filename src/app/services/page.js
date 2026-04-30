@@ -7,60 +7,65 @@ import styles from './page.module.css';
 const services = [
   {
     id: 'cnc-turning',
-    title: 'CNC Turning Components',
-    desc: 'CNC turning is a machining process that uses computer numerical control (CNC) to produce cylindrical components with high precision. A rotating workpiece is shaped by cutting tools that remove material to create desired dimensions and finishes.',
-    features: ['High precision & accuracy', 'Fast turnaround times', 'Complex geometries handled easily', 'Cost-effective for high volumes'],
-    image: 'https://images.unsplash.com/photo-1612015949589-3ae8e6d2a84c?q=80&w=2070&auto=format&fit=crop'
+    title: 'CNC Turning',
+    desc: 'Produce cylindrical components with high precision using our computer numerical control machines. We guarantee fast turnarounds and exceptional quality.',
+    features: ['High precision & accuracy', 'Fast turnaround times', 'Complex geometries', 'Cost-effective'],
+    image: '/images/cnc-turning.png'
   },
   {
     id: 'vmc-milling',
-    title: 'VMC Milling Components',
-    desc: 'VMC milling, or vertical machining centre milling, utilizes computer numerical control (CNC) to precisely cut and shape materials into complex components. In this process, a vertically oriented spindle rotates cutting tools to remove material from a stationary workpiece, allowing for intricate designs and features.',
-    features: ['Versatile machining capabilities', 'High surface finish quality', 'Rigid setup for hard materials', 'Suitable for custom parts'],
-    image: 'https://images.unsplash.com/photo-1621616875355-6674a9eb6cd9?q=80&w=2070&auto=format&fit=crop'
+    title: 'VMC Milling',
+    desc: 'VMC milling utilizes computer numerical control to precisely cut and shape materials into complex components for intricate designs.',
+    features: ['Versatile machining', 'High surface finish', 'Rigid setup', 'Custom parts'],
+    image: '/images/vmc-milling.png'
   },
   {
-    id: 'milling-machines',
-    title: 'Milling Machines',
-    desc: 'Our milling machines are designed for precision and accuracy. We offer vertical milling machines, horizontal milling machines, and universal milling machines to meet all your milling needs.',
-    features: ['Robust construction', 'Easy maintenance', 'Advanced control systems', 'High efficiency'],
-    image: 'https://images.unsplash.com/photo-1590502598375-403487c6999a?q=80&w=2070&auto=format&fit=crop'
-  },
-  {
-    id: 'cnc-soft-jaws',
-    title: 'CNC Soft Jaws',
-    desc: 'CNC soft jaws are custom-engineered work holding solutions used in CNC machining to securely grip delicate or irregularly shaped components. Made from materials like aluminium or plastic, these jaws are designed to conform to the workpiece\'s contours, minimising deformation and ensuring precision during machining.',
-    features: ['Custom fits for unique parts', 'Prevents part deformation', 'Quick setup times', 'Re-machinable for multiple uses'],
-    image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=2070&auto=format&fit=crop'
-  },
-  {
-    id: 'wire-cutting',
-    title: 'Wire Cutting',
-    desc: 'We offer a variety of shearing machines, including hydraulic shears, mechanical shears, and guillotine shears. Our shearing machines are built to cut through a range of materials with ease.',
-    features: ['Clean and precise cuts', 'No thermal distortion', 'Capable of complex shapes', 'High repeatability'],
-    image: 'https://images.unsplash.com/photo-1563821034-70494df0516d?q=80&w=2070&auto=format&fit=crop'
+    id: 'metal-fabrication',
+    title: 'Metal Fabrication',
+    desc: 'Creating metal structures through cutting, bending, and assembling materials. Our fabrication processes are built to handle projects of any scale.',
+    features: ['Structural integrity', 'Custom bending', 'Expert welding', 'Durable finishes'],
+    image: '/images/fabrication.png'
   }
 ];
+
+// Stagger variants for the feature list
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  show: { opacity: 1, x: 0, transition: { type: "spring", bounce: 0.5 } }
+};
 
 export default function ServicesPage() {
   return (
     <>
+      <div className="animated-bg"></div>
+
       <section className={styles.header}>
         <div className="container">
           <motion.h1 
             className={`text-gradient ${styles.title}`}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ type: "spring", bounce: 0.5, duration: 0.8 }}
           >
-            Our Capabilities & Machinery
+            Machinery & Services
           </motion.h1>
           <motion.p 
             className={styles.subtitle}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
           >
-            We offer a wide range of metal materials and fabrication services, sourced from top manufacturers and executed with unparalleled precision.
+            Explore our cutting-edge technology designed to deliver unparalleled precision.
           </motion.p>
         </div>
       </section>
@@ -71,25 +76,58 @@ export default function ServicesPage() {
             <motion.div 
               key={service.id}
               className={styles.serviceItem}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 100 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8, type: "spring", bounce: 0.3 }}
             >
-              <div className={styles.imageWrapper}>
+              <motion.div 
+                className={styles.imageWrapper}
+                whileHover={{ scale: 1.05, rotateY: 5, rotateX: 5 }}
+                transition={{ type: "spring", bounce: 0.4 }}
+              >
                 <img src={service.image} alt={service.title} className={styles.serviceImage} />
-              </div>
+              </motion.div>
               <div className={styles.serviceInfo}>
-                <h2>{service.title}</h2>
-                <p>{service.desc}</p>
-                <ul className={styles.featureList}>
+                <motion.h2
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                >
+                  {service.title}
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                >
+                  {service.desc}
+                </motion.p>
+                <motion.ul 
+                  className={styles.featureList}
+                  variants={containerVariants}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                >
                   {service.features.map((feature, idx) => (
-                    <li key={idx}>{feature}</li>
+                    <motion.li key={idx} variants={itemVariants}>
+                      {feature}
+                    </motion.li>
                   ))}
-                </ul>
-                <Link href="/contact" className="btn-secondary">
-                  Request a Quote
-                </Link>
+                </motion.ul>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6 }}
+                >
+                  <Link href="/contact" className="btn-secondary">
+                    Get a Quote
+                  </Link>
+                </motion.div>
               </div>
             </motion.div>
           ))}

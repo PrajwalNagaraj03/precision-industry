@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ThemeProvider from "@/components/ThemeProvider";
 
 export const metadata = {
   title: "Precision Industry | High-Quality Metal Materials & Fabrication",
@@ -11,11 +12,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        <main style={{ minHeight: 'calc(100vh - 80px)', paddingTop: '80px' }}>
-          {children}
-        </main>
-        <Footer />
+        <ThemeProvider>
+          <Navbar />
+          <main style={{ minHeight: 'calc(100vh - 80px)', paddingTop: '80px' }}>
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

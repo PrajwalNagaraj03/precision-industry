@@ -96,3 +96,15 @@
 .logoAccent {
   color: var(--color-accent-primary);
 }
+
+/* Light mode overrides */
+:global([data-theme="light"]) .footer {
+  background-color: #F1F3F8;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+:global([data-theme="light"]) .bottomBar {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+

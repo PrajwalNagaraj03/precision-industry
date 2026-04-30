@@ -107,3 +107,28 @@
   width: 100%;
   text-align: center;
 }
+
+/* Light mode overrides */
+:global([data-theme="light"]) .iconWrapper {
+  background-color: rgba(124, 58, 237, 0.08);
+}
+
+:global([data-theme="light"]) .input,
+:global([data-theme="light"]) .textarea {
+  background-color: #F9FAFB;
+  border: 1px solid #E5E7EB;
+  color: #111827;
+}
+
+:global([data-theme="light"]) .input:focus,
+:global([data-theme="light"]) .textarea:focus {
+  border-color: var(--color-accent-primary);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+}
+
+:global([data-theme="light"]) .contactFormCard {
+  background: #FFFFFF;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+

@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
 import { FaCogs } from 'react-icons/fa';
+import ThemeToggle from './ThemeToggle';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
@@ -49,6 +49,7 @@ export default function Navbar() {
           >
             Contact
           </Link>
+          <ThemeToggle />
           <Link href="/contact" className="btn-primary">
             Get a Quote
           </Link>

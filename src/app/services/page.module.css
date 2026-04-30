@@ -1,23 +1,38 @@
 .header {
   padding: var(--spacing-xl) 0 var(--spacing-lg);
   text-align: center;
-  background-color: var(--color-bg-secondary);
-  border-bottom: 1px solid var(--color-border);
+  background-color: transparent;
+  position: relative;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-primary), transparent);
 }
 
 .title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(3rem, 6vw, 5rem);
   margin-bottom: var(--spacing-sm);
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .subtitle {
   max-width: 800px;
   margin: 0 auto;
-  font-size: 1.25rem;
+  font-size: 1.3rem;
+  color: var(--color-text-primary);
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .servicesContainer {
   padding: var(--spacing-xl) 0;
+  position: relative;
 }
 
 .serviceItem {
@@ -26,6 +41,19 @@
   gap: var(--spacing-xl);
   align-items: center;
   margin-bottom: var(--spacing-xl);
+  background: rgba(13, 18, 38, 0.4);
+  padding: var(--spacing-lg);
+  border-radius: 30px;
+  border: 1px solid rgba(255,255,255,0.05);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  backdrop-filter: blur(10px);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.serviceItem:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 240, 255, 0.15), 0 0 20px rgba(255, 0, 85, 0.1) inset;
+  border-color: rgba(0, 240, 255, 0.3);
 }
 
 .serviceItem:nth-child(even) {
@@ -36,11 +64,12 @@
   direction: ltr;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .serviceItem {
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-sm);
   }
   .serviceItem:nth-child(even) {
     direction: ltr;
@@ -49,49 +78,87 @@
 
 .imageWrapper {
   position: relative;
-  border-radius: 12px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  border: 1px solid var(--color-border);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  border: 2px solid rgba(255, 0, 85, 0.3);
 }
 
 .serviceImage {
   width: 100%;
-  height: 400px;
+  height: 450px;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  filter: saturate(1.2);
 }
 
 .imageWrapper:hover .serviceImage {
-  transform: scale(1.05);
+  transform: scale(1.1) rotate(2deg);
 }
 
 .serviceInfo h2 {
-  color: var(--color-accent-primary);
+  color: var(--color-text-primary);
   margin-bottom: var(--spacing-sm);
+  font-size: 2.5rem;
+  text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
 }
 
 .serviceInfo p {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   margin-bottom: 1.5rem;
+  color: var(--color-text-secondary);
 }
 
 .featureList {
   list-style: none;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .featureList li {
   position: relative;
-  padding-left: 24px;
-  margin-bottom: 0.5rem;
+  padding-left: 30px;
+  margin-bottom: 0.8rem;
   color: var(--color-text-primary);
+  font-weight: 500;
+  font-size: 1.1rem;
 }
 
 .featureList li::before {
-  content: '✓';
+  content: '⚡';
   position: absolute;
   left: 0;
   color: var(--color-accent-primary);
-  font-weight: bold;
+  font-size: 1.2rem;
+  filter: drop-shadow(0 0 5px var(--color-accent-primary));
 }
+
+/* Light mode overrides */
+:global([data-theme="light"]) .subtitle {
+  text-shadow: none;
+}
+
+:global([data-theme="light"]) .serviceItem {
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+:global([data-theme="light"]) .serviceItem:hover {
+  box-shadow: 0 16px 48px rgba(124, 58, 237, 0.1), 0 4px 12px rgba(0, 0, 0, 0.04);
+  border-color: rgba(124, 58, 237, 0.2);
+}
+
+:global([data-theme="light"]) .imageWrapper {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+:global([data-theme="light"]) .serviceInfo h2 {
+  text-shadow: none;
+  color: var(--color-accent-primary);
+}
+
+:global([data-theme="light"]) .featureList li::before {
+  filter: none;
+}
+
